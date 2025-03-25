@@ -1,0 +1,55 @@
+import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+@FunctionalInterface
+interface MathOperation {
+    int operate(int a, int b);
+}
+
+public class lambdaExersises {
+    public static void main(String[] args) {
+        MathOperation add = (a, b) -> a + b;
+        MathOperation subtract = (a, b) -> a - b;
+        MathOperation maltiople = (a, b) -> a * b;
+        MathOperation divide = (a, b) -> a / b;
+
+        System.out.println("Addition:" + add.operate(3, 7));
+        System.out.println("subtraction:" + subtract.operate(8, 2));
+        System.out.println("Maltilpecation:" + maltiople.operate(7, 3));
+        System.out.println(("division:" + divide.operate(21, 7)));
+        //exersis 2
+        List<Integer> numbers = Arrays.asList(10, 15, 22, 33, 40, 55);
+        Predicate<Integer> OddNumbers = n -> n % 2 != 0;
+        System.out.println("even numbers:" + OddNumbers);
+        //Exersise 3
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
+        names.sort((a, b) -> b.compareTo(a));
+        System.out.println("Sorted Names:" + names);
+        //exrsise 4
+        Function<String, String> transform = s -> new StringBuilder(s.toUpperCase()).reverse().toString();
+        List<String> words = Arrays.asList("hello", "java", "lambda");
+        List<String> transformedWords = words.stream().map(transform).toList();
+        System.out.println("transformedWorlds:" + transformedWords);
+        //exersise 5
+        List<String> cities = Arrays.asList("New York", "London", "Tokyo", "Berlin");
+        Consumer<String> printCity = city -> System.out.println(city);
+        cities.forEach(printCity);
+        //exersise 6
+        cities.forEach(System.out::println);
+        //exersise 7
+        BiFunction<Integer, Integer, Integer> max = Integer::max;
+        BiFunction<Integer, Integer, Integer> min = Integer::min;
+        int a = 25, b = 40;
+        System.out.println("max:" + max.apply(a, b));
+        System.out.println("min:" + min.apply(a, b));
+
+
+    }
+
+
+}
